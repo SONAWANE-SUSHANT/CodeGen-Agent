@@ -126,8 +126,8 @@ codegen-agent/
 Clone the repository and install dependencies:
 
 ```bash
-git clone https://github.com/SONAWANE-SUSHANT/LOVABLE_CLONE.git
-cd LOVABLE_CLONE
+git clone https://github.com/SONAWANE-SUSHANT/CodeGen-Agent.git
+cd CodeGen-Agent
 
 # Using uv (fastest)
 uv sync
