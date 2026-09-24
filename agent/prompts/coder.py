@@ -81,3 +81,41 @@ Rules
 
 Return only the file contents.
 """
+
+
+def coder_fix_prompt(
+    project_name: str,
+    filepath: str,
+    existing_content: str,
+    issue: str,
+    fix_instruction: str,
+    project_context: str,
+) -> str:
+    return f"""
+You are an expert senior software engineer resolving an issue identified during code review.
+
+Project: {project_name}
+Target File: {filepath}
+
+Issue To Fix:
+{issue}
+
+Fix Instructions:
+{fix_instruction}
+
+Project Context (other files):
+{project_context}
+
+Current File Content:
+{existing_content}
+
+Rules:
+- Apply the fix completely and accurately.
+- Keep consistency with the rest of the project files.
+- Return ONLY the COMPLETE updated file.
+- Never explain your answer.
+- Never use markdown.
+- Never wrap your answer inside ```.
+
+Return only the file contents.
+"""

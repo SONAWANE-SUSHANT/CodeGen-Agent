@@ -1,5 +1,13 @@
 from agent.core.llm import llm
-from agent.core.state import File, GraphState, ImplementationTask, Plan, TaskPlan
+from agent.core.state import (
+    File,
+    FileIssue,
+    GraphState,
+    ImplementationTask,
+    Plan,
+    ReviewFeedback,
+    TaskPlan,
+)
 
 __all__ = [
     "llm",
@@ -7,5 +15,7 @@ __all__ = [
     "Plan",
     "ImplementationTask",
     "TaskPlan",
+    "FileIssue",
+    "ReviewFeedback",
     "GraphState",
 ]
