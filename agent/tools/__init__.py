@@ -1,7 +1,3 @@
-"""
-Backward-compatibility bridge for agent.filesystem.
-Filesystem tools have moved to agent.tools.filesystem.
-"""
 from agent.tools.filesystem import (
     absolute_path,
     create_empty_files,
@@ -18,16 +14,16 @@ from agent.tools.filesystem import (
 )
 
 __all__ = [
-    "slugify",
-    "create_project",
     "absolute_path",
-    "ensure_parent_exists",
-    "read_file",
-    "write_file",
     "create_empty_files",
-    "list_files",
-    "file_exists",
+    "create_project",
     "delete_file",
+    "ensure_parent_exists",
+    "file_exists",
     "group_tasks_by_file",
+    "list_files",
+    "read_file",
     "read_project_context",
+    "slugify",
+    "write_file",
 ]

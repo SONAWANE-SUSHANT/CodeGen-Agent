@@ -1,11 +1,11 @@
-from langgraph.graph import StateGraph, START, END
+from langgraph.graph import END, START, StateGraph
 
-from agent.states import GraphState
-from agent.planner import Planner
-from agent.architect import Architect
-from agent.coder import Coder
+from agent.core.state import GraphState
+from agent.nodes.architect import Architect
+from agent.nodes.coder import Coder
+from agent.nodes.planner import Planner
 
-
+# Node instances
 planner = Planner()
 architect = Architect()
 coder = Coder()
@@ -23,6 +23,7 @@ def coder_node(state: GraphState) -> GraphState:
     return coder.run(state)
 
 
+# Build multi-agent orchestration graph
 builder = StateGraph(GraphState)
 
 builder.add_node("planner", planner_node)

@@ -1,9 +1,7 @@
-from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+"""
+Backward-compatibility bridge for agent.llm.
+LLM instance has moved to agent.core.llm.
+"""
+from agent.core.llm import llm
 
-load_dotenv()
-
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
-    temperature=0,
-)
+__all__ = ["llm"]

@@ -1,71 +1,3 @@
-from agent.states import Plan
-
-
-def planner_prompt(user_request: str) -> str:
-    return f"""
-You are an expert software architect.
-
-Design a software project based on the user's request.
-
-Return:
-
-- Project name
-- Description
-- Tech stack
-- Features
-- Files required
-
-User Request:
-
-{user_request}
-"""
-
-
-def architect_prompt(plan: Plan) -> str:
-
-    features = "\n".join(
-        f"- {feature}"
-        for feature in plan.features
-    )
-
-    files = "\n".join(
-        f"- {file.path}: {file.purpose}"
-        for file in plan.files
-    )
-
-    return f"""
-You are a senior software architect.
-
-Break the project into implementation tasks.
-
-Rules:
-
-- Each task modifies ONE file.
-- Order tasks logically.
-- Keep tasks small.
-- Assume previous tasks are already completed.
-
-Project
-
-Name:
-{plan.name}
-
-Description:
-{plan.description}
-
-Tech Stack:
-{plan.techstack}
-
-Features
-
-{features}
-
-Files
-
-{files}
-"""
-
-
 def coder_prompt(
     project_name: str,
     project_description: str,
@@ -78,30 +10,17 @@ def coder_prompt(
     project_files: list[str],
     completed_tasks: list[str],
 ) -> str:
+    feature_text = "\n".join(f"- {f}" for f in features)
 
-    feature_text = "\n".join(
-        f"- {f}"
-        for f in features
-    )
-
-    file_text = "\n".join(
-        f"- {f}"
-        for f in project_files
-    )
+    file_text = "\n".join(f"- {f}" for f in project_files)
 
     completed = (
-        "\n".join(
-            f"- {t}"
-            for t in completed_tasks
-        )
+        "\n".join(f"- {t}" for t in completed_tasks)
         if completed_tasks
         else "None"
     )
 
-    task_text = "\n".join(
-        f"- {t}"
-        for t in tasks
-    )
+    task_text = "\n".join(f"- {t}" for t in tasks)
 
     if not existing_content.strip():
         existing_content = "(empty file)"
