@@ -5,9 +5,12 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    express_api_base_url: AnyHttpUrl = Field(alias="EXPRESS_API_BASE_URL")
-    gemini_api_key: str = Field(alias="GEMINI_API_KEY")
-    qdrant_url: AnyHttpUrl = Field(alias="QDRANT_URL")
+    express_api_base_url: AnyHttpUrl | None = Field(
+        default=None, alias="EXPRESS_API_BASE_URL"
+    )
+    gemini_api_key: str | None = Field(default=None, alias="GEMINI_API_KEY")
+    groq_api_key: str | None = Field(default=None, alias="GROQ_API_KEY")
+    qdrant_url: AnyHttpUrl | None = Field(default=None, alias="QDRANT_URL")
     app_env: str = Field(default="development", alias="APP_ENV")
 
     model_config = SettingsConfigDict(
@@ -19,7 +22,7 @@ class Settings(BaseSettings):
 
     @property
     def cors_origins(self) -> list[str]:
-        if self.app_env == "production":
+        if self.app_env == "production" and self.express_api_base_url:
             return [str(self.express_api_base_url).rstrip("/")]
 
         return ["*"]

@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.router import router
 from config.settings import settings
 
-
 app = FastAPI(
-    title="ConstructAI AI Service",
+    title="CodeGen Agent API",
+    description="Autonomous Multi-Agent Code Generation Service powered by LangGraph, LangChain, and Groq Llama 3.3.",
     version="0.1.0",
 )
 
@@ -19,3 +19,8 @@ app.add_middleware(
 )
 
 app.include_router(router)
+
+if __name__ == "__main__":
+    import uvicorn
+
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

@@ -1,10 +1,11 @@
 [project]
-name = "coder-buddy"
+name = "codegen-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "Autonomous multi-agent code generation system powered by LangGraph, LangChain, and Groq Llama 3.3"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+    "fastapi>=0.141.1",
     "groq>=0.31.0",
     "langchain>=0.3.27",
     "langchain-core>=0.3.72",
@@ -12,5 +13,7 @@ dependencies = [
     "langgraph>=0.6.3",
     "pip>=25.2",
     "pydantic>=2.11.7",
+    "pydantic-settings>=2.15.0",
     "python-dotenv>=1.1.1",
+    "uvicorn>=0.53.0",
 ]
